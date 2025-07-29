@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD User Form</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h2>CRUD -> Create, Read, Update, Delete</h2>
+
+    <h3>Form: new input</h3>
+    <input type="text" id="firstName" placeholder="Enter name" />
+    <input type="text" id="lastName" placeholder="Enter surname" />
+    <input type="email" id="email" placeholder="Email" />
+    <input type="tel" id="phone" placeholder="Phone" />
+    <button onclick="addUser()">Submit</button>
+    <button onclick="resetForm()">Cancel</button>
+
+    <h3>Info per Userin</h3>
+    <table id="userTable" border="1">
+      <thead>
+        <tr>
+          <th>Emër</th>
+          <th>Mbiemër</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div
+      style="
+        margin-top: 30px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+      "
+    >
+      <button onclick="saveData()">Save</button>
+      <button onclick="cancelChanges()">Cancel</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
