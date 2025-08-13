@@ -1,0 +1,159 @@
+<div class="list-card">
+  <div class="header-path">LEADS &nbsp;›&nbsp; New List</div>
+
+  <h2 class="title">Create a New List</h2>
+
+  <form (ngSubmit)="onSubmit()" #f="ngForm" class="form">
+    <!-- Row: List name + checkboxes në të njëjtën vijë -->
+    <div class="form-row">
+      <label for="listName" class="form-label">
+        List Name <span class="required">*</span>
+      </label>
+
+      <div class="form-controls">
+        <input
+          id="listName"
+          name="listName"
+          type="text"
+          [(ngModel)]="listName"
+          required
+          class="txt"
+        />
+
+        <label class="inline-check">
+          <input
+            type="checkbox"
+            [(ngModel)]="setAsDefault"
+            name="setAsDefault"
+          />
+          <span>Set as Default</span>
+        </label>
+
+        <label class="inline-check">
+          <input
+            type="checkbox"
+            [(ngModel)]="listInMetrics"
+            name="listInMetrics"
+          />
+          <span>List in Metrics</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Choose columns -->
+    <div class="form-block">
+      <label class="block-label">
+        Choose columns and order <span class="muted">(Max 15)</span>
+      </label>
+
+      <!-- Chips si në screenshot -->
+      <div class="chips-row">
+        <ng-container *ngFor="let col of selectedColumns">
+          <span class="chip">
+            {{ col }}
+            <button
+              type="button"
+              class="chip-remove"
+              (click)="onColumnChange(false, col)"
+              aria-label="Remove column"
+            >
+              &times;
+            </button>
+          </span>
+        </ng-container>
+      </div>
+
+      <!-- Add column
+      <div class="add-column-row">
+        <select [(ngModel)]="columnToAdd" name="columnToAdd" class="select">
+          <option [ngValue]="null">Select column</option>
+          <option *ngFor="let col of availableColumns" [ngValue]="col">
+            {{ col }}
+          </option>
+        </select>
+        <button
+          type="button"
+          class="btn"
+          (click)="addColumn()"
+          [disabled]="selectedColumns.length >= 15 || !columnToAdd"
+        >
+          + Add Condition
+        </button>
+      </div> -->
+
+      <!-- (opsionale) Grid i fshehur vizualisht – e mbajmë për riorganizim në të ardhmen -->
+      <ag-grid-angular
+        class="ag-theme-alpine ag-hidden"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [domLayout]="'autoHeight'"
+        [suppressRowClickSelection]="true"
+        [rowSelection]="'single'"
+        [headerHeight]="0"
+        (gridReady)="onGridReady($event)"
+      ></ag-grid-angular>
+    </div>
+
+    <!-- Conditions panel si në screenshot -->
+    <div class="form-block">
+      <label class="block-label">Choose List conditions :</label>
+
+      <div class="conditions">
+        <div class="condition-box">
+          <div class="condition-title">
+            <strong>All Conditions</strong>&nbsp;
+            <span class="note">(All conditions must be met)</span>
+          </div>
+          <button type="button" class="btn" (click)="addAllCondition()">
+            + Add Condition
+          </button>
+
+          <div class="condition-items" *ngIf="allConditions.length">
+            <div
+              class="cond-item"
+              *ngFor="let cond of allConditions; let i = index"
+            >
+              Condition {{ i + 1 }}
+            </div>
+          </div>
+        </div>
+
+        <div class="condition-box">
+          <div class="condition-title">
+            <strong>Any Conditions</strong>&nbsp;
+            <span class="note"
+              >(At least one of the conditions must be met)</span
+            >
+          </div>
+          <button type="button" class="btn" (click)="addAnyCondition()">
+            + Add Condition
+          </button>
+
+          <div class="condition-items" *ngIf="anyConditions.length">
+            <div
+              class="cond-item"
+              *ngFor="let cond of anyConditions; let i = index"
+            >
+              Condition {{ i + 1 }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Share -->
+    <div class="form-row share-row">
+      <label class="form-label"></label>
+      <label class="inline-check">
+        <input type="checkbox" [(ngModel)]="shareList" name="shareList" />
+        <span>Share the list</span>
+      </label>
+    </div>
+
+    <!-- <div class="actions">
+      <button class="btn primary" type="submit" [disabled]="!f.form.valid">
+        Save
+      </button>
+    </div> -->
+  </form>
+</div>

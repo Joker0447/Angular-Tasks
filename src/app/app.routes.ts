@@ -34,6 +34,11 @@ export const routes: Routes = [
             (m) => m.CampaignStatusComponent
           ),
       },
+      {
+        path: 'lists',
+        loadComponent: () =>
+          import('./lists/lists.component').then((m) => m.ListsComponent),
+      },
     ],
   },
   { path: '**', redirectTo: 'login' },
