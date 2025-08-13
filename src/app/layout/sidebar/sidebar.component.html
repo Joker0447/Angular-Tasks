@@ -1,0 +1,311 @@
+<div
+  [class]="
+    'bg-slate-800 text-white flex flex-col h-full transition-all duration-300 ' +
+    (isCollapsed ? 'w-16' : 'w-64')
+  "
+>
+  <!-- Logo/Brand with Collapse Toggle -->
+  <div class="border-b border-slate-700 relative">
+    <div class="p-4" [class.hidden]="isCollapsed">
+      <div class="flex items-center gap-2">
+        <div
+          class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center"
+        >
+          <span class="text-white font-bold text-sm">CRM</span>
+        </div>
+        <span class="font-semibold text-lg">Dashboard</span>
+      </div>
+    </div>
+    <div *ngIf="isCollapsed" class="p-4 flex justify-center">
+      <div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
+        <span class="text-white font-bold text-sm">CRM</span>
+      </div>
+    </div>
+    <button
+      (click)="toggleSidebar()"
+      class="absolute -right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-slate-700 rounded-full flex items-center justify-center hover:bg-slate-600 transition-colors border border-slate-600"
+      title="Toggle Sidebar"
+    >
+      <span class="text-xs text-white material-icons">{{
+        isCollapsed ? "chevron_right" : "chevron_left"
+      }}</span>
+    </button>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="flex-1 overflow-y-auto py-2">
+    <ul class="space-y-1 px-2">
+      <li>
+        <a
+          href="#"
+          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-700 transition-colors bg-slate-700 group"
+        >
+          <span class="material-icons text-lg">dashboard</span>
+          <span *ngIf="!isCollapsed" class="text-sm font-medium"
+            >Dashboard</span
+          >
+        </a>
+      </li>
+      <!--User Management-->
+      <li>
+        <button
+          (click)="toggleMenu(' user management')"
+          class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-700 transition-colors group"
+          [class.bg-slate-700]="isMenuExpanded('user management')"
+        >
+          <span class="text-lg">👤</span>
+          <span *ngIf="!isCollapsed" class="text-sm font-medium"
+            >User Management</span
+          >
+          <span
+            *ngIf="!isCollapsed"
+            class="ml-auto text-xs transition-transform duration-200"
+            [class.rotate-90]="isMenuExpanded('user management')"
+            >▶</span
+          >
+          <!--Tooltip for collapsed state-->
+          <div
+            *ngIf="isCollapsed"
+            class="absolute left-16 bg-slate-900 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50"
+          >
+            User Management
+          </div>
+        </button>
+        <!-- User Management Submenu -->
+        <ul
+          *ngIf="isMenuExpanded(' user management')"
+          class="ml-6 mt-1 space-y-1 animate-fadeIn"
+        >
+          <li>
+            <a
+              href="#"
+              class="flex items-center gap-2 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-700 rounded transition-colors"
+            >
+              <span class="text-xs"></span>
+              Users
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/roles"
+              routerLinkActive="bg-slate-700 text-white"
+              class="flex items-center gap-2 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-700 rounded transition-colors"
+            >
+              <span class="text-xs"></span>
+              Roles
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#"
+              class="flex items-center gap-2 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-700 rounded transition-colors"
+            >
+              <span class="text-xs"></span>
+              Profiles
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="flex items-center gap-2 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-700 rounded transition-colors"
+            >
+              <span class="text-xs"></span>
+              Sharing Rules
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/groups"
+              routerLinkActive="bg-slate-700 text-white"
+              class="flex items-center gap-2 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-700 rounded transition-colors"
+            >
+              <span class="text-xs"></span>
+              Groups
+            </a>
+          </li>
+          <li>
+            <a
+              href="groups"
+              class="flex items-center gap-2 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-700 rounded transition-colors"
+            >
+              <span class="text-xs"></span>
+              Login History
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <!-- MARKETING -->
+      <li>
+        <button
+          (click)="toggleMenu('marketing')"
+          class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-700 transition-colors group"
+          [class.bg-slate-700]="isMenuExpanded('marketing')"
+        >
+          <span class="material-icons text-lg">campaign</span>
+          <span
+            *ngIf="!isCollapsed"
+            class="text-sm font-medium flex-1 text-left"
+            >MARKETING</span
+          >
+          <span
+            *ngIf="!isCollapsed"
+            class="ml-auto material-icons text-xs transition-transform duration-200"
+            [class.rotate-90]="isMenuExpanded('marketing')"
+            >chevron_right</span
+          >
+        </button>
+        <ul *ngIf="isMenuExpanded('marketing')" class="ml-6 mt-1 space-y-1">
+          <li>
+            <a
+              href="#"
+              class="flex items-center gap-2 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-700 rounded"
+            >
+              <span class="material-icons text-sm">bar_chart</span>
+              Campaigns
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="flex items-center gap-2 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-700 rounded"
+            >
+              <span class="material-icons text-sm">mail</span>
+              Email Templates
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="flex items-center gap-2 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-700 rounded"
+            >
+              <span class="material-icons text-sm">insights</span>
+              Analytics
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/campaign-status"
+              routerLinkActive="bg-slate-700 text-white"
+              class="flex items-center gap-2 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-700 rounded"
+            >
+              <span class="material-icons text-sm">flag</span>
+              Campaign Status
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <!-- SALES -->
+      <li>
+        <button
+          (click)="toggleMenu('sales')"
+          class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-700 transition-colors group"
+          [class.bg-slate-700]="isMenuExpanded('sales')"
+        >
+          <span class="material-icons text-lg">work</span>
+          <span
+            *ngIf="!isCollapsed"
+            class="text-sm font-medium flex-1 text-left"
+            >SALES</span
+          >
+          <span
+            *ngIf="!isCollapsed"
+            class="ml-auto material-icons text-xs transition-transform duration-200"
+            [class.rotate-90]="isMenuExpanded('sales')"
+            >chevron_right</span
+          >
+        </button>
+        <ul *ngIf="isMenuExpanded('sales')" class="ml-6 mt-1 space-y-1">
+          <li>
+            <a
+              href="#"
+              class="flex items-center gap-2 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-700 rounded"
+            >
+              <span class="material-icons text-sm">group</span>
+              Leads
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="flex items-center gap-2 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-700 rounded"
+            >
+              <span class="material-icons text-sm">handshake</span>
+              Opportunities
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="flex items-center gap-2 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-700 rounded"
+            >
+              <span class="material-icons text-sm">description</span>
+              Quotes
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="flex items-center gap-2 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-700 rounded"
+            >
+              <span class="material-icons text-sm">timeline</span>
+              Pipeline
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Other Main Items -->
+      <li *ngFor="let item of otherMenus">
+        <button
+          (click)="toggleMenu(item.key)"
+          class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-700 transition-colors group"
+        >
+          <span class="material-icons text-lg">{{ item.icon }}</span>
+          <span
+            *ngIf="!isCollapsed"
+            class="text-sm font-medium flex-1 text-left"
+            >{{ item.label }}</span
+          >
+          <span
+            *ngIf="!isCollapsed"
+            class="ml-auto material-icons text-xs transition-transform duration-200"
+            [class.rotate-90]="isMenuExpanded(item.key)"
+            >chevron_right</span
+          >
+        </button>
+      </li>
+
+      <li class="border-t border-slate-700 my-2" *ngIf="!isCollapsed"></li>
+
+      <!-- Static Items -->
+      <li *ngFor="let item of staticItems">
+        <a
+          href="#"
+          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-700 transition-colors group"
+        >
+          <span class="material-icons text-lg">{{ item.icon }}</span>
+          <span *ngIf="!isCollapsed" class="text-sm font-medium">{{
+            item.label
+          }}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Footer -->
+  <div
+    class="border-t border-slate-700 text-xs text-slate-400"
+    *ngIf="!isCollapsed"
+  >
+    <div class="p-4">
+      <p>Powered by vtiger CRM - 7.4.0</p>
+      <p>
+        © 2004 - 2025 Vtiger |
+        <a href="#" class="hover:text-white">Privacy Policy</a>
+      </p>
+    </div>
+  </div>
+</div>
