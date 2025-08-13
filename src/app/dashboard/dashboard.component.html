@@ -1,0 +1,30 @@
+<div class="p-6 bg-gray-50 min-h-full">
+  <!-- Header -->
+  <div class="mb-6">
+    <h1 class="text-2xl font-bold text-gray-900 mb-2">Dashboard</h1>
+    <p class="text-gray-600">Welcome to your CRM dashboard</p>
+  </div>
+
+  <!-- Widgets Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <app-widget title="Leads by Status" icon="bar_chart" message="No Leads matched this criteria"></app-widget>
+    <app-widget title="Leads by Source" icon="show_chart" message="No Leads matched this criteria"></app-widget>
+    <app-widget title="Sales Performance" icon="trending_up" message="No data available"></app-widget>
+    <app-widget title="Recent Activities" icon="phone" message="No recent activity available"></app-widget>
+    <app-widget title="Pipeline Overview" icon="timeline" message="No pipeline data"></app-widget>
+    <app-widget title="Target vs Achievement" icon="track_changes" message="No targets set for this period"></app-widget>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="mt-8">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">Quick Actions</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      <app-action icon="person_add" label="Add Lead"></app-action>
+      <app-action icon="group_add" label="Add Contact"></app-action>
+      <app-action icon="business" label="Add Account"></app-action>
+      <app-action icon="work" label="New Deal"></app-action>
+      <app-action icon="email" label="Send Email"></app-action>
+      <app-action icon="assignment" label="Create Task"></app-action>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="toolbar">
+  <button mat-raised-button color="primary" (click)="addRow()">
+    ➕ Add Lead Source
+  </button>
+</div>
+
+<div
+  class="ag-theme-alpine"
+  style="width: 100%; height: 400px; margin-top: 10px"
+>
+  <ag-grid-angular
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    (gridReady)="onGridReady($event)"
+    domLayout="autoHeight"
+    rowSelection="single"
+  >
+  </ag-grid-angular>
+</div>
