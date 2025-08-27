@@ -13,6 +13,33 @@ import { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
   styleUrls: ['./lists.component.scss'],
 })
 export class ListsComponent {
+  // Top action buttons
+  onAddLead() {
+    // Basic stub: create a new lead (could be a dialog, form, or API call)
+    const newLead = {
+      firstName: '',
+      lastName: '',
+      primaryPhone: '',
+      company: '',
+      leadSource: '',
+      primaryEmail: '',
+      website: '',
+      assignedTo: '',
+      city: '',
+      country: '',
+    };
+    // For now, just log and show an alert
+    console.log('New lead created:', newLead);
+    alert('New lead created! (stub)');
+  }
+
+  onImport() {
+    alert('Import clicked! (stub)');
+  }
+
+  onCustomize() {
+    alert('Customize clicked! (stub)');
+  }
   // Add column (from dropdown)
   addColumn() {
     if (

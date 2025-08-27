@@ -39,6 +39,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./lists/lists.component').then((m) => m.ListsComponent),
       },
+      {
+        path: 'lead-reports',
+        loadComponent: () =>
+          import('./lead-reports/lead-reports.component').then(
+            (m) => m.LeadReportsComponent
+          ),
+      },
     ],
   },
   { path: '**', redirectTo: 'login' },

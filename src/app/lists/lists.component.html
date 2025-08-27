@@ -1,6 +1,27 @@
 <div class="list-card">
   <div class="header-path">LEADS &nbsp;›&nbsp; New List</div>
 
+  <div
+    class="top-actions"
+    style="
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    "
+  >
+    <button type="button" class="btn action-btn" (click)="onAddLead()">
+      Add Lead
+    </button>
+    <button type="button" class="btn action-btn" (click)="onImport()">
+      Import
+    </button>
+    <button type="button" class="btn action-btn" (click)="onCustomize()">
+      Customize
+    </button>
+  </div>
+
   <h2 class="title">Create a New List</h2>
 
   <form (ngSubmit)="onSubmit()" #f="ngForm" class="form">
@@ -63,8 +84,7 @@
         </ng-container>
       </div>
 
-      <!-- Add column
-      <div class="add-column-row">
+      <!-- <div class="add-column-row">
         <select [(ngModel)]="columnToAdd" name="columnToAdd" class="select">
           <option [ngValue]="null">Select column</option>
           <option *ngFor="let col of availableColumns" [ngValue]="col">
@@ -77,7 +97,7 @@
           (click)="addColumn()"
           [disabled]="selectedColumns.length >= 15 || !columnToAdd"
         >
-          + Add Condition
+          + Add Column
         </button>
       </div> -->
 
@@ -89,9 +109,8 @@
         [domLayout]="'autoHeight'"
         [suppressRowClickSelection]="true"
         [rowSelection]="'single'"
-        [headerHeight]="0"
-        (gridReady)="onGridReady($event)"
-      ></ag-grid-angular>
+      >
+      </ag-grid-angular>
     </div>
 
     <!-- Conditions panel si në screenshot -->
@@ -100,14 +119,16 @@
 
       <div class="conditions">
         <div class="condition-box">
-          <div class="condition-title">
-            <strong>All Conditions</strong>&nbsp;
-            <span class="note">(All conditions must be met)</span>
-          </div>
-          <button type="button" class="btn" (click)="addAllCondition()">
-            + Add Condition
+          <button
+            type="button"
+            class="add-condition-btn"
+            (click)="addAllCondition()"
+          >
+            <span style="font-weight: bold; font-size: 1.2em; margin-right: 4px"
+              >+</span
+            >
+            Add Condition
           </button>
-
           <div class="condition-items" *ngIf="allConditions.length">
             <div
               class="cond-item"
@@ -116,8 +137,11 @@
               Condition {{ i + 1 }}
             </div>
           </div>
+          <div class="condition-title">
+            <strong>All Conditions</strong>&nbsp;
+            <span class="note">(All of the conditions must be met)</span>
+          </div>
         </div>
-
         <div class="condition-box">
           <div class="condition-title">
             <strong>Any Conditions</strong>&nbsp;
@@ -125,10 +149,16 @@
               >(At least one of the conditions must be met)</span
             >
           </div>
-          <button type="button" class="btn" (click)="addAnyCondition()">
-            + Add Condition
+          <button
+            type="button"
+            class="add-condition-btn"
+            (click)="addAnyCondition()"
+          >
+            <span style="font-weight: bold; font-size: 1.2em; margin-right: 4px"
+              >+</span
+            >
+            Add Condition
           </button>
-
           <div class="condition-items" *ngIf="anyConditions.length">
             <div
               class="cond-item"
@@ -141,19 +171,11 @@
       </div>
     </div>
 
-    <!-- Share -->
-    <div class="form-row share-row">
-      <label class="form-label"></label>
-      <label class="inline-check">
-        <input type="checkbox" [(ngModel)]="shareList" name="shareList" />
-        <span>Share the list</span>
-      </label>
-    </div>
-
     <!-- <div class="actions">
       <button class="btn primary" type="submit" [disabled]="!f.form.valid">
         Save
       </button>
     </div> -->
+    <!-- Ensure all opened divs are closed before closing the form -->
   </form>
 </div>

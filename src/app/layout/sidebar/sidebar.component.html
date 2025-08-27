@@ -226,8 +226,19 @@
             [class.rotate-90]="isMenuExpanded('sales')"
             >chevron_right</span
           >
+          c
         </button>
         <ul *ngIf="isMenuExpanded('sales')" class="ml-6 mt-1 space-y-1">
+          <li>
+            <a
+              routerLink="/lead-reports"
+              routerLinkActive="bg-slate-700 text-white"
+              class="flex items-center gap-2 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-700 rounded"
+            >
+              <span class="material-icons text-sm">table_chart</span>
+              Lead Reports
+            </a>
+          </li>
           <li>
             <a
               href="#"

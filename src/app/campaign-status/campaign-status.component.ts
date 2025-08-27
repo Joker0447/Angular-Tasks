@@ -32,10 +32,14 @@ export class CampaignStatusComponent {
       headerName: 'Actions',
       width: 120,
       cellRenderer: (params: ICellRendererParams) => {
-        // Butonat HTML për Edit dhe Delete
+        // Use Material Icons for Edit and Delete with tooltips
         return `
-          <button class="btn edit-btn">✏</button>
-          <button class="btn delete-btn">🗑</button>
+          <button class=\"btn edit-btn\" title=\"Edit\" aria-label=\"Edit\">
+            <span class=\"material-icons\" style=\"font-size:22px;vertical-align:middle;\">edit</span>
+          </button>
+          <button class=\"btn delete-btn\" title=\"Delete\" aria-label=\"Delete\">
+            <span class=\"material-icons\" style=\"font-size:22px;vertical-align:middle;\">delete</span>
+          </button>
         `;
       },
     },
